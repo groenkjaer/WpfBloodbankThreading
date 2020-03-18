@@ -27,16 +27,22 @@ namespace WpfBloodbankThreading
         public MainWindow()
         {
             InitializeComponent();
-            BankBranch(ucEstland);
+            //BankBranch(ucEstland);
+
+            Thread th = new Thread(new ThreadStart(BankBranch));
+            th.Start();
         }
 
-        private void BankBranch(object _obj)
+        private void BankBranch()
         {
-            DispatcherTimer dt = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 2) }; //Change values every 2 seconds using this
-
-            BankInfo uc = _obj as BankInfo;
-            uc.lblBloodLevel.Content = 30;
-            uc.lblThreadNumber.Content = Environment.CurrentManagedThreadId;
+            //DispatcherTimer dt = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 2) }; Change values every 2 seconds using this
+            //BankInfo uc = _obj as BankInfo;
+            ucEstland.lblBloodLevel.Content = 30;
+            //uc.lblThreadNumber.Content = Environment.CurrentManagedThreadId;
+            while (true)
+            {
+                ucEstland.lblBloodLevel.Content = new Random().Next(1, 100);
+            }
         }
     }
 }
