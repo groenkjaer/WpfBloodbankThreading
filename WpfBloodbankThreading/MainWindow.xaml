@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfBloodbankThreading"
         xmlns:UserControls="clr-namespace:WpfBloodbankThreading.UserControls" x:Class="WpfBloodbankThreading.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="280" Width="1094">
+        Title="MainWindow" Height="280" Width="1094" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -17,6 +17,10 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Label Content="Bankfilialer" FontSize="72" Foreground="#FF707070" Grid.Column="1"/>
+        <Label Content="Estland" Foreground="#FF707070" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-20" FontSize="16"/>
+        <Label Content="Letland" Foreground="#FF707070" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-20" FontSize="16"/>
+        <Label Content="Litauen" Foreground="#FF707070" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-20" FontSize="16"/>
 
         <UserControls:BankInfo x:Name="ucEstland" Grid.Row="1"/>
         <UserControls:BankInfo x:Name="ucLetland" Grid.Row="1" Grid.Column="1"/>

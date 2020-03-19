@@ -24,25 +24,39 @@ namespace WpfBloodbankThreading
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void UpdateTextCallback(int value, BankInfo ucTarget, int threadId);
+
         public MainWindow()
         {
             InitializeComponent();
-            //BankBranch(ucEstland);
 
-            Thread th = new Thread(new ThreadStart(BankBranch));
-            th.Start();
+
+
+            Thread th = new Thread(new ParameterizedThreadStart(BankBranch));
+            Thread th1 = new Thread(new ParameterizedThreadStart(BankBranch));
+            Thread th2 = new Thread(new ParameterizedThreadStart(BankBranch));
+            th.Start(ucEstland);
+            th1.Start(ucLetland);
+            th2.Start(ucLitauen);
         }
 
-        private void BankBranch()
+        private void BankBranch(object _obj)
         {
-            //DispatcherTimer dt = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 2) }; Change values every 2 seconds using this
-            //BankInfo uc = _obj as BankInfo;
-            ucEstland.lblBloodLevel.Content = 30;
-            //uc.lblThreadNumber.Content = Environment.CurrentManagedThreadId;
+            int threadId = Environment.CurrentManagedThreadId;
+            BankInfo bankBranch = _obj as BankInfo;
+            Random rng = new Random(threadId); //Brug tråd id som seed så de har forskellige værdier
+            
             while (true)
             {
-                ucEstland.lblBloodLevel.Content = new Random().Next(1, 100);
+                bankBranch.Dispatcher.Invoke(new UpdateTextCallback(UpdateTextValue), rng.Next(1, 100), bankBranch, threadId);
+                Thread.Sleep(800);
             }
+        }
+
+        private void UpdateTextValue(int value, BankInfo ucTarget, int threadId)
+        {
+            ucTarget.lblBloodLevel.Content = value;
+            ucTarget.lblThreadNumber.Content = threadId;
         }
     }
 }
