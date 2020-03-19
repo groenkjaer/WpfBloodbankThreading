@@ -30,19 +30,19 @@ namespace WpfBloodbankThreading
         {
             InitializeComponent();
 
+            Thread[] threads = new Thread[3];
+            BankInfo[] bankInfos = new BankInfo[] { ucEstland, ucLetland, ucLitauen };
 
-
-            Thread th = new Thread(new ParameterizedThreadStart(BankBranch));
-            Thread th1 = new Thread(new ParameterizedThreadStart(BankBranch));
-            Thread th2 = new Thread(new ParameterizedThreadStart(BankBranch));
-            th.Start(ucEstland);
-            th1.Start(ucLetland);
-            th2.Start(ucLitauen);
+            for (int i = 0; i < 3; i++)
+            {
+                threads[i] = new Thread(new ParameterizedThreadStart(BankBranch)) { IsBackground = true };
+                threads[i].Start(bankInfos[i]);
+            }
         }
 
         private void BankBranch(object _obj)
         {
-            int threadId = Environment.CurrentManagedThreadId;
+            int threadId = Environment.CurrentManagedThreadId; 
             BankInfo bankBranch = _obj as BankInfo;
             Random rng = new Random(threadId); //Brug tråd id som seed så de har forskellige værdier
             
@@ -55,6 +55,15 @@ namespace WpfBloodbankThreading
 
         private void UpdateTextValue(int value, BankInfo ucTarget, int threadId)
         {
+            if (ucTarget.lblBloodLevel.Content.ToString() == "")
+            {
+                value += 0;
+            }
+            else
+            {
+                value += (int)ucTarget.lblBloodLevel.Content;
+            }
+            
             ucTarget.lblBloodLevel.Content = value;
             ucTarget.lblThreadNumber.Content = threadId;
         }
