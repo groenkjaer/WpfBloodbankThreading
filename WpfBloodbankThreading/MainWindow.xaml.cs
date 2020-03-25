@@ -26,10 +26,9 @@ namespace WpfBloodbankThreading
     {
         public delegate void UpdateTextCallback(int value, BankInfo ucTarget, int threadId);
 
-        public MainWindow()
+        public MainWindow() //I am master branch
         {
             InitializeComponent();
-
             Thread[] threads = new Thread[3];
             BankInfo[] bankInfos = new BankInfo[] { ucEstland, ucLetland, ucLitauen };
 
