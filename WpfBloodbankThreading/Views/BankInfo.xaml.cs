@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfBloodbankThreading.ViewModel;
 
-namespace WpfBloodbankThreading.UserControls
+namespace WpfBloodbankThreading.Views
 {
     /// <summary>
     /// Interaction logic for BankInfo.xaml
@@ -23,6 +24,7 @@ namespace WpfBloodbankThreading.UserControls
         public BankInfo()
         {
             InitializeComponent();
+            DataContext = new BankInfoViewModel();
         }
     }
 }

@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="WpfBloodbankThreading.MainWindow"
         xmlns:local="clr-namespace:WpfBloodbankThreading"
-        xmlns:UserControls="clr-namespace:WpfBloodbankThreading.UserControls" x:Class="WpfBloodbankThreading.MainWindow"
-        mc:Ignorable="d"
+    xmlns:Views="clr-namespace:WpfBloodbankThreading.Views"
+    mc:Ignorable="d"
         Title="MainWindow" Height="280" Width="1094" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,9 +23,9 @@
         <Label Content="Letland" Foreground="#FF707070" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-20" FontSize="16"/>
         <Label Content="Litauen" Foreground="#FF707070" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-20" FontSize="16"/>
 
-        <UserControls:BankInfo x:Name="ucEstland" Grid.Row="1"/>
-        <UserControls:BankInfo x:Name="ucLetland" Grid.Row="1" Grid.Column="1"/>
-        <UserControls:BankInfo x:Name="ucLitauen" Grid.Row="1" Grid.Column="2"/>
+        <Views:BankInfo x:Name="ucEstland" Grid.Row="1"/>
+        <Views:BankInfo x:Name="ucLetland" Grid.Row="1" Grid.Column="1"/>
+        <Views:BankInfo x:Name="ucLitauen" Grid.Row="1" Grid.Column="2"/>
 
     </Grid>
 </Window>

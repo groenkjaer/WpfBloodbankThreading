@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControls\BankInfo.xaml.cs">
+    <Compile Include="Model\BankInfoModel.cs" />
+    <Compile Include="ViewModel\BankInfoViewModel.cs" />
+    <Compile Include="Views\BankInfo.xaml.cs">
       <DependentUpon>BankInfo.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -70,9 +72,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\BankInfo.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\BankInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -101,5 +103,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
